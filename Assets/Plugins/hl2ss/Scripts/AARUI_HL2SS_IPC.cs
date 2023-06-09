@@ -37,14 +37,17 @@ public class AARUI_HL2SS_IPC : MonoBehaviour
 
         switch (command)
         {
-        case 0x000000000: ret = MSG_Initialize(data); break;
-        case 0x000000010: ret = MSG_SetTasks(data); break;
-        case 0x000000011: ret = MSG_SetCurrentTaskID(data); break;
-        case 0x000000012: ret = MSG_SetTaskListActive(data); break;
-        case 0x000000013: ret = MSG_SetAllTasksDone(data); break;
-        case 0x000000014: ret = MSG_ToggleTaskList(data); break;
-        case 0x000000015: ret = MSG_SetTaskListEyeEventsActive(data); break;
-        case 0x000000016: ret = MSG_MuteAudio(data); break;
+        case 0x00000000U: ret = MSG_Initialize(data); break;
+        case 0x00000010U: ret = MSG_SetTasks(data); break;
+        case 0x00000011U: ret = MSG_SetCurrentTaskID(data); break;
+        case 0x00000012U: ret = MSG_SetTaskListActive(data); break;
+        case 0x00000013U: ret = MSG_SetAllTasksDone(data); break;
+        case 0x00000014U: ret = MSG_ToggleTaskList(data); break;
+        case 0x00000015U: ret = MSG_SetTaskListEyeEventsActive(data); break;
+        case 0x00000016U: ret = MSG_MuteAudio(data); break;
+        case 0x00000020U: ret = MSG_GetUserFeedbackResult(data); break;
+        case 0x00000021U: ret = MSG_TryGetUserFeedbackOnUserIntent(data); break;
+        case 0x00000022U: ret = MSG_ShowSkipNotification(data); break;
         case 0xFFFFFFFFU: ret = MSG_Disconnect(data); break;
         }
 
@@ -167,14 +170,40 @@ public class AARUI_HL2SS_IPC : MonoBehaviour
         return 0;
     }
 
+    uint MSG_GetUserFeedbackResult(byte[] data)
+    {
+        return m_userIntentComplete;
+    }
+
     uint MSG_TryGetUserFeedbackOnUserIntent(byte[] data)
     {
-        return 1;
+        try
+        {
+            string msg = Encoding.UTF8.GetString(data, 0, data.Length);
+            m_userIntentComplete = 0;
+            AngelARUI.Instance.TryGetUserFeedbackOnUserIntent(msg);
+        }
+        catch
+        {
+            return 1;
+        }
+
+        return 0;
     }
 
     uint MSG_ShowSkipNotification(byte[] data)
     {
-        return 1;
+        try
+        {
+            int show = BitConverter.ToInt32(data, 0);
+            AngelARUI.Instance.ShowSkipNotification(show != 0);
+        }
+        catch
+        {
+            return 1;
+        }
+
+        return 0;
     }
 
     uint MSG_Disconnect(byte[] data)
