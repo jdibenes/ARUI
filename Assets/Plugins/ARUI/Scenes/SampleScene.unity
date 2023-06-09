@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 166813278}
   - component: {fileID: 166813279}
+  - component: {fileID: 166813281}
+  - component: {fileID: 166813280}
   m_Layer: 0
   m_Name: DummyTestDataGenerator
   m_TagString: Untagged
@@ -162,12 +164,46 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166813277}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d674ff7b4a94e04d9a5dad6a0718a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Automate: 1
+--- !u!114 &166813280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166813277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cbc816e9b2e7a41bca409e819aa2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &166813281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166813277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14bfd168ceaf80439b702a8158f9ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableRM: 1
+  enablePV: 1
+  enableMC: 1
+  enableSI: 1
+  enableRC: 1
+  enableSM: 1
+  enableSU: 1
+  enableVI: 1
+  enableMQ: 1
+  enableEET: 1
 --- !u!1 &170235686
 GameObject:
   m_ObjectHideFlags: 0
